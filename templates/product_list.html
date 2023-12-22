@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <link href="{% static 'css/product_list.css' %}" rel="stylesheet">
+    <h2>Каталог</h2>
+    <div class="products">
+        {% for product in products %}
+    <div>
+        <a href="{{ product.get_absolute_url }}">
+            <img src="{{ product.image.url }}">
+            <p>{{ product.name }}</p>
+            <p>Ціна: {{ product.price }} грн</p>
+        </a>
+    </div>
+{% endfor %}
+    </div>
+{% endblock %}

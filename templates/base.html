@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {% load static %}
+    <link href="{% static 'css/base.css' %}" rel="stylesheet">
+    <title>{% block title %}GSM{% endblock %}</title>
+</head>
+<body>
+
+
+<header>
+    <div style="border-bottom:solid 3px white;justify-content:center">
+      <div style="border:solid 5px white">
+        <a href="/">
+            <h1>GAMESTARMADE</h1>
+        </a>
+
+        <ul>
+          <li><a href="/">Головна</a></li>
+          <li><a href="{% url 'about' %}">Про нас</a></li>
+          <li><a href="{% url 'view_cart' %}">Корзина</a></li>
+        </ul>
+
+
+        <div>
+            {% if user.is_authenticated %}
+        <p>Вітаємо, {{ user.username }}!</p>
+        <form action="{% url 'logout' %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Вийти</button>
+        </form>
+      {% else %}
+        <a href="{% url 'login' %}"><button type="button">Увійти</button></a>
+            <a href="{% url 'signup' %}"><button type="button">Зареєструватися</button></a>
+      {% endif %}
+      </div>
+    </div>
+    </div>
+
+
+</header>
+
+<main>
+     {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li>{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    {% block content %}{% endblock %}
+</main>
+
+<footer style="border-top:solid 3px white;margin-top:50px">
+    <p>&copy; 2023 GSM. All rights reserved.</p>
+</footer>
+
+</body>
+</html>

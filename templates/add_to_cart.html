@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+    p,form {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+    button{
+    background:black;
+    color:#148aff;
+    font-size: 17px;
+    }
+
+</style>
+
+{% if success_message %}
+    <p>{{ success_message }}</p>
+{% endif %}
+<form method="post" action="">
+    {% csrf_token %}
+    {{ form }}
+    <button type="submit">
+        Додати в кошик
+    </button>
+</form>
+
+{% endblock %}

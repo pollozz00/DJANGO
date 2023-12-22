@@ -1,0 +1,14 @@
+{% extends 'base.html' %} &nbsp;{% block content %}
+<style>
+  div{
+    text-align:center;
+  }
+
+</style>
+<h2 style="text-align: center";>Вхід</h2>
+<form method="post" style="margin: 0 auto; width: 9%;">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit" style="background:black;color:#148aff;font-size: 17px;margin-bottom:100px;">Увійти</button>
+</form>
+{% endblock content %}

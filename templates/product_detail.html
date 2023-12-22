@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+    <link href="{% static 'css/product_detail.css' %}" rel="stylesheet">
+<div class="product" >
+    <img src="{{ product.image.url }}">
+
+    <p>{{ product.name }}</p>
+    <p>Ціна: {{product.price}} грн</p>
+    <p>{{ product.description }}</p>
+
+    <form method="post" action="{% url 'add_to_cart' product.id %}">
+            {% csrf_token %}
+            {{ form }}
+            <button type="submit" style="background:black;color:#148aff;font-size:17px;">
+                Додати в кошик
+            </button>
+    </form>
+</div>
+{% endblock %}

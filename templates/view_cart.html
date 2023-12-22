@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+  .buy {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+</style>
+<div class="buy">
+
+  {% for cart_item in cart_items %}
+    {{ cart_item.product.name }} - {{ cart_item.quantity }} шт. по {{ cart_item.product.price }} грн за шт.
+    <br>
+  {% endfor %}
+  <a href="{% url 'buy_items' %}"><button style="margin-bottom:550px;background:black;color:#148aff;font-size: 17px;">Купити</button></a>
+</div>
+{% endblock %}
